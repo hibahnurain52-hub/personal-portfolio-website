@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scope Demonstration</title>
+</head>
+<body>
+
+    <h1>Open the Developer Console to see the results!</h1>
+    <p>Right-click this page, select <b>Inspect</b>, and go to the <b>Console</b> tab.</p>
+
+    <script>
+        // --- YOUR CODE STARTS HERE ---
+
+        const globalVariable = "I am accessible everywhere!";
+
+        function demonstrateScope(parameter) {
+            const localVariable = "I am only accessible inside this function";
+            
+            // Functions can see the outside world (Global scope)
+            console.log("Global check:", globalVariable); 
+            
+            // Functions can use their own inputs (Parameters)
+            console.log("Parameter check:", parameter);
+            
+            // Function can see its own local variables
+            console.log("Local check:", localVariable);
+            
+            return "Function complete";
+        }
+
+        // Execution
+        const result = demonstrateScope("Hello World");
+        console.log("Result:", result);
+
+        // If you uncomment the line below, you will see a ReferenceError in your terminal
+        // because 'localVariable' does not exist in this scope.
+        console.log(localVariable); 
+
+        // --- YOUR CODE ENDS HERE ---
+    </script>
+</body>
+</html>

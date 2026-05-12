@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+  <input type="number" id="num1" placeholder="First number">
+  <input type="number" id="num2" placeholder="Second number">
+  
+  <button id="calculateBtn">Add Numbers</button>
+
+  <p>Result: <span id="result">0</span></p>
+
+  <script>
+    const button = document.getElementById("calculateBtn");
+
+    function addNumbers() {
+      /*
+       * This line of code is a fundamental pattern in JavaScript for handling user input. 
+       * Because HTML inputs are always treated as text (strings) by the browser, you must 
+       * "process" them before you can perform math.
+       *
+       * Breakdown of: const n1 = parseFloat(document.getElementById("num1").value) || 0;
+       * * Pipeline:
+       * 1. document.getElementById("num1") -> Locates: Searches for element with ID "num1".
+       * 2. .value -> Extracts: Pulls content as a string.
+       * 3. parseFloat(...) -> Converts: Changes string to a decimal number.
+       *
+       * Why these specific parts are necessary:
+       *
+       * 1. Why use parseFloat?
+       * If you skip parseFloat, JavaScript sees input as text. Adding strings results
+       * in concatenation (joining) instead of addition.
+       * - With parseFloat: 5 + 5 = 10
+       * - Without parseFloat: "5" + "5" = "55"
+       *
+       * 2. Why use || 0?
+       * When a user clicks "Calculate" without typing anything, the .value is an empty string ("").
+       * If you try to perform math without a default, your result will show up as NaN (Not a Number).
+       * The || 0 tells JavaScript: "If the first part is empty or invalid, just use 0 instead."
+       * This ensures your calculator always displays a valid number.
+       */
+      const n1 = parseFloat(document.getElementById("num1").value) || 0;
+      const n2 = parseFloat(document.getElementById("num2").value) || 0;
+      
+      document.getElementById("result").textContent = n1 + n2;
+    }
+
+    button.addEventListener("click", addNumbers);
+  </script>
+
+</body>
+</html>
